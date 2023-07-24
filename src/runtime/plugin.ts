@@ -108,7 +108,7 @@ export default defineNuxtPlugin(async () => {
 
     try {
       const response = await apiFetch(config.endpoints.login, {
-        method: 'POST',
+        method: 'GET',
         body: JSON.stringify(data),
         headers: {
           Accept: 'application/json',
