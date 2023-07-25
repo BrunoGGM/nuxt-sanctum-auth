@@ -19,7 +19,8 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "release": "npm run prepack && changelogen --release"
+    "pack": "npm pack",
+    "release": "npm run pack && mv -f nuxt-sanctum-auth-*.tgz ./release"
   },
   "dependencies": {
     "@nuxt/kit": "^3.2.0",

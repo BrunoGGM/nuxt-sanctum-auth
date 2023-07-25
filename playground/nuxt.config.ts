@@ -28,7 +28,8 @@ export default defineNuxtConfig({
     redirects: {
       home: '/account',
       login: '/auth/login',
-      logout: '/'
+      logout: '/',
+      loginError: '/auth/login'
     }
   }
 })

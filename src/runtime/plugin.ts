@@ -44,6 +44,11 @@ export default defineNuxtPlugin(async () => {
 
   const apiFetch = (endpoint: FetchRequest, options?: FetchOptions) => {
     const fetch = ofetch.create({
+      async onResponseError({ request, response, options }) {
+        if (response.status === 401) {
+          window.location.replace(config.redirects.loginError)
+        }
+      },
       baseURL: config.baseUrl,
       credentials: 'include',
       headers: {
@@ -90,8 +95,8 @@ export default defineNuxtPlugin(async () => {
       const user = await apiFetch(config.endpoints.user)
       if (user) {
         auth.value.loggedIn = true
-        auth.value.user = user
-        return user as T
+        auth.value.user = user?.user
+        return user?.user as T
       }
     } catch (error) {
       // console.log(error)
@@ -110,6 +115,7 @@ export default defineNuxtPlugin(async () => {
       const response = await apiFetch(config.endpoints.login, {
         method: 'GET',
         body: JSON.stringify(data),
+        credentials: 'include',
         headers: {
           Accept: 'application/json',
           [config.csrf.headerKey]: !config.token

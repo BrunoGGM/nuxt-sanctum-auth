@@ -11,6 +11,7 @@ export interface Redirects {
   home: string
   login: string
   logout: string
+  loginError: string
 }
 
 export interface ModuleOptions {

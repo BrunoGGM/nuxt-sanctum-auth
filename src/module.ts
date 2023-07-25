@@ -23,7 +23,8 @@ const defaults: ModuleOptions = {
   redirects: {
     home: '/',
     login: '/login',
-    logout: '/login'
+    logout: '/login',
+    loginError: '/login'
   }
 }
 
